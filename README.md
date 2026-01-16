@@ -1,55 +1,65 @@
-![tittle](src/assets/logo/pokemon-counters.png)
+![title](src/assets/logo/pokemon-counters.png)
+![title](src/assets/logo/Hyte.png)
 
 <h1 align="center">
   <img src="src/assets/logo/pokeball.png" width="36" />
-  Pokémon Counters
+  Pokemon Counters
 </h1>
 
-Aplicación web interactiva para consultar de forma rápida y visual las **debilidades, resistencias e inmunidades de los tipos Pokémon**.
+Aplicacion web interactiva para consultar de forma rapida y visual las **debilidades, resistencias e inmunidades de los tipos Pokemon**.
 
-Permite seleccionar **uno o dos tipos** y muestra automáticamente los multiplicadores de daño (`x4`, `x2`, `x0`, `x1/2`, `x1/4`), solucionando uno de los problemas más habituales al jugar a Pokémon: **recordar los counters de cada tipo**.
-
----
-
-## 🌐 Demo online
-
-👉 **Aplicación desplegada en GitHub Pages**  
-https://Speeson.github.io/PokemonCounters/
+Permite seleccionar **uno o dos tipos** y muestra automaticamente los multiplicadores de dano (`x4`, `x2`, `x0`, `x1/2`, `x1/4`), solucionando uno de los problemas mas habituales al jugar a Pokemon: **recordar los counters de cada tipo**.
 
 ---
 
-## ✨ Características
+## Demo online
 
-- 🎮 Selección de **hasta 2 tipos Pokémon**
-- ⚡ Cálculo automático de:
+**Aplicacion desplegada en GitHub Pages**  
+https://Speeson.github.io/PokemonCountersHyte/
+
+---
+
+## Caracteristicas
+
+- Seleccion de **hasta 2 tipos Pokemon**
+- Calculo automatico de:
   - Debilidades (`x4`, `x2`)
   - Inmunidades (`x0`)
   - Resistencias (`x1/2`, `x1/4`)
-- 🧩 Soporte completo para los **18 tipos Pokémon**
-- 🖼️ Interfaz visual basada en iconos
-- 🌈 Efectos visuales **neón dinámicos por tipo**
-- 📱 Diseño **responsive**
-- 🚀 Despliegue automático con **GitHub Actions**
+- Soporte completo para los **18 tipos Pokemon**
+- Interfaz visual basada en iconos
+- Efectos visuales dinamicos por tipo
+- Diseno **responsive**
+- Adaptada a pantalla tactil **HYTE Y70 Touch** (paneles a toda altura y lectura vertical)
+- Despliegue automatico con **GitHub Actions**
 
 ---
 
-## 🧠 Funcionamiento
+## HYTE Y70 Touch
 
-1. El usuario selecciona uno o dos tipos Pokémon.
+- Paneles con altura completa para el formato vertical del chasis.
+- Seleccion de tipos en 3 columnas, ocupando todo el alto del panel.
+- Resultados con 3 columnas fijas y tamanos de iconos dinamicos segun cantidad.
+
+---
+
+## Funcionamiento
+
+1. El usuario selecciona uno o dos tipos Pokemon.
 2. Se calcula la efectividad defensiva combinando ambos tipos.
 3. Los resultados se agrupan por multiplicador:
-   - `x4` → Muy débil
-   - `x2` → Débil
-   - `x0` → Inmune
-   - `x1/2` → Resiste
-   - `x1/4` → Resiste mucho
-4. Cada tipo se muestra como un botón visual con su icono.
+   - `x4` - Muy debil
+   - `x2` - Debil
+   - `x0` - Inmune
+   - `x1/2` - Resiste
+   - `x1/4` - Resiste mucho
+4. Cada tipo se muestra como un boton visual con su icono.
 
-Toda la lógica se ejecuta **en el frontend**, sin backend ni base de datos.
+Toda la logica se ejecuta **en el frontend**, sin backend ni base de datos.
 
 ---
 
-## 🛠️ Tecnologías utilizadas
+## Tecnologias utilizadas
 
 - **React**
 - **Vite**
@@ -61,56 +71,54 @@ Toda la lógica se ejecuta **en el frontend**, sin backend ni base de datos.
 
 ---
 
-## 📂 Estructura del proyecto
+## Estructura del proyecto
 
 ```
 src/
-├─ assets/
-│  ├─ types/
-│  └─ logo/
-├─ components/
-│  ├─ TypeGrid.jsx
-│  ├─ ResultsPanel.jsx
-│  └─ TypeTileSmall.jsx
-├─ data/
-│  └─ typeChart.json
-├─ lib/
-│  └─ typeEffectiveness.js
-├─ App.jsx
-├─ App.css
-└─ main.jsx
+  assets/
+    types/
+    logo/
+  components/
+    TypeGrid.jsx
+    ResultsPanel.jsx
+    TypeTileSmall.jsx
+  data/
+    typeChart.json
+  lib/
+    typeEffectiveness.js
+  App.jsx
+  App.css
+  main.jsx
 ```
 
 ---
 
-## 📐 Arquitectura
+## Arquitectura
 
-- Aplicación **SPA** completamente en frontend
+- Aplicacion **SPA** completamente en frontend
 - Datos de tipos almacenados en JSON
-- Gestión de estado con **React Hooks**
-- Diseño preparado para futura app móvil (Android / Kotlin)
+- Gestion de estado con **React Hooks**
+- Diseno preparado para futura app movil (Android / Kotlin)
 
 ---
 
-## 🚀 Despliegue automático
+## Despliegue automatico
 
-El proyecto se despliega automáticamente mediante **GitHub Actions**:
+El proyecto se despliega automaticamente mediante **GitHub Actions**:
 
 - Cada `push` a la rama `main`:
   1. Se ejecuta el proceso de build (`npm run build`)
-  2. Se generan los archivos estáticos
-  3. Se publican automáticamente en **GitHub Pages**
+  2. Se generan los archivos estaticos
+  3. Se publican automaticamente en **GitHub Pages**
 
-Esto garantiza un despliegue continuo, gratuito y sin servidores en ejecución.
-
-Archivo de configuración:
+Archivo de configuracion:
 ```
 .github/workflows/deploy.yml
 ```
 
 ---
 
-## 📦 Instalación local
+## Instalacion local
 
 ```bash
 git clone https://github.com/Speeson/PokemonCounters.git
@@ -119,37 +127,42 @@ npm install
 npm run dev
 ```
 
-La aplicación estará disponible en:
+La aplicacion estara disponible en:
 ```
 http://localhost:5173
 ```
 
+Para verla en movil en la misma red:
+```
+npm run dev -- --host
+```
+
 ---
 
-## 📜 Licencias y atribuciones
+## Licencias y atribuciones
 
-- Los iconos de tipos Pokémon son recreaciones de la comunidad con licencias permisivas.
-- Pokémon es una marca registrada de **The Pokémon Company**.
+- Los iconos de tipos Pokemon son recreaciones de la comunidad con licencias permisivas.
+- Pokemon es una marca registrada de **The Pokemon Company**.
 - Proyecto desarrollado con fines **educativos**.
 
 ---
 
-## 🎓 Contexto académico
+## Contexto academico
 
 Ciclo formativo: **Desarrollo de Aplicaciones Multiplataforma (DAM)**
 
 ---
 
-## 👤 Autor
+## Autor
 
 **Esteban**  
-Repositorio: https://github.com/Speeson/PokemonCounters
+Repositorio: https://github.com/Speeson/PokemonCountersHyte
 
 ---
 
-## ⭐ Mejoras futuras
+## Mejoras futuras
 
-- Búsqueda por Pokémon (PokéAPI)
-- Aplicación móvil en Android (Kotlin)
+- Busqueda por Pokemon (PokeAPI)
+- Aplicacion movil en Android (Kotlin)
 - Guardado de combinaciones favoritas
-- Más animaciones y efectos visuales
+- Mas animaciones y efectos visuales
