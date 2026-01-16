@@ -1,15 +1,23 @@
 import TypeTileSmall from "./TypeTileSmall";
 
+function getGridSizeClass(count) {
+  if (count <= 3) return "resultGrid--xl";
+  if (count <= 6) return "resultGrid--lg";
+  if (count <= 9) return "resultGrid--md";
+  return "resultGrid--sm";
+}
+
 function ResultBlock({ title, types }) {
   if (!types || types.length === 0) return null;
+  const gridSizeClass = getGridSizeClass(types.length);
 
   return (
     <div className="resultBlock">
       <h3 className="resultTitle">{title}</h3>
 
-      {/* 👇 WRAPPER para centrar el grid */}
+      {/* ĞY'Î WRAPPER para centrar el grid */}
       <div className="resultGridWrap">
-        <div className="resultGrid">
+        <div className={`resultGrid ${gridSizeClass}`}>
           {types.map((t) => (
             <TypeTileSmall key={t} type={t} />
           ))}

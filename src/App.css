@@ -22,6 +22,7 @@ html, body {
 .page {
   min-height: 100vh;
   padding: 28px 16px;
+  display: flex;
 
   /* Fondo tipo Pokéball */
   background: linear-gradient(
@@ -55,7 +56,11 @@ html, body {
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 18px;
+  gap: 14px;
+  align-items: stretch;
+  width: 100%;
+  flex: 1;
+  min-height: calc(100vh - 56px);
 }
 
 
@@ -70,6 +75,20 @@ html, body {
   padding: 18px;
   box-shadow: 0 18px 34px rgba(0,0,0,0.14);
   backdrop-filter: blur(8px);
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.panel--types .typeGrid {
+  flex: 1;
+  align-content: stretch;
+  grid-auto-rows: 1fr;
+  gap: 16px;
+}
+
+.panel--results .results {
+  flex: 1;
 }
 
 .panelTitle {
@@ -99,7 +118,7 @@ html, body {
 .typeGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
+  gap: 12px;
 }
 
 
@@ -117,9 +136,10 @@ html, body {
   padding: 18px 12px;
   display: grid;
   place-items: center;
+  align-content: center;
   gap: 10px;
 
-  min-height: 120px;
+  min-height: 108px;
   user-select: none;
 
   transition:
@@ -168,9 +188,9 @@ html, body {
 }
 
 /* Icono y texto */
-.typeTileIcon {
-  width: 60px;
-  height: 60px;
+.panel--types .typeTileIcon {
+  width: 70px;
+  height: 70px;
 }
 
 .typeTileLabel {
@@ -209,7 +229,7 @@ html, body {
 
 .results {
   display: grid;
-  gap: 18px;
+  gap: 14px;
 }
 
 .resultBlock {
@@ -229,8 +249,36 @@ html, body {
 
 .resultGrid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  width: 100%;
+  --weak-icon: 72px;
+  --weak-min: 108px;
+  --weak-pad-v: 18px;
+  --weak-pad-h: 12px;
+  --weak-gap: 10px;
+}
+
+.resultGrid--xl {
+  --weak-icon: 80px;
+  --weak-min: 120px;
+}
+
+.resultGrid--lg {
+  --weak-icon: 72px;
+  --weak-min: 108px;
+}
+
+.resultGrid--md {
+  --weak-icon: 64px;
+  --weak-min: 100px;
+  --weak-pad-v: 14px;
+}
+
+.resultGrid--sm {
+  --weak-icon: 56px;
+  --weak-min: 92px;
+  --weak-pad-v: 12px;
 }
 
 /* Botón de debilidad */
@@ -238,18 +286,24 @@ html, body {
   border: 1px solid rgba(0,0,0,0.14);
   border-radius: 20px;
   background: rgba(255,255,255,0.92);
+  overflow: hidden;
 
-  padding: 16px 10px;
+  padding: var(--weak-pad-v) var(--weak-pad-h);
   display: grid;
   place-items: center;
-  gap: 10px;
+  justify-items: center;
+  gap: var(--weak-gap);
 
-  min-height: 110px;
+  min-height: var(--weak-min);
 }
 
 .weakTileIcon {
-  width: 60px;
-  height: 60px;
+  width: var(--weak-icon);
+  height: var(--weak-icon);
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  display: block;
 }
 
 .weakTileLabel {
@@ -393,6 +447,9 @@ html, body {
     grid-template-columns: 1fr;
     justify-items: center; /* centra los paneles */
     gap: 14px;
+    min-height: calc(100vh - 32px);
+    grid-template-rows: 1fr 1fr;
+    align-content: stretch;
   }
 
   /* Paneles centrados y (IMPORTANTE) más claros para que se vea el blanco */
@@ -402,9 +459,15 @@ html, body {
     padding: 14px;
     background: rgba(255, 255, 255, 0.86); /* 👈 así el fondo blanco vuelve a verse */
     border: 1px solid rgba(0,0,0,0.10);
+    min-height: 0;
   }
 
   /* Si aclaras panel, el texto de títulos mejor oscuro */
+  .panel--types,
+  .panel--results {
+    overflow: auto;
+  }
+
   .panelTitle,
   .resultTitle,
   .resultSectionTitle {
@@ -416,20 +479,22 @@ html, body {
 
   /* Grid de tipos: 5 por fila */
   .typeGrid {
-    grid-template-columns: repeat(5, 1fr) !important;
-    gap: 8px;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 10px;
+    align-content: stretch;
+    grid-auto-rows: 1fr;
   }
 
   .typeTile {
-    min-height: 70px;
-    padding: 10px 6px;
+    min-height: 78px;
+    padding: 12px 6px;
     border-radius: 14px;
     gap: 6px;
   }
 
-  .typeTileIcon {
-    width: 30px;
-    height: 30px;
+  .panel--types .typeTileIcon {
+    width: 36px;
+    height: 36px;
   }
 
   .typeTileLabel {
@@ -459,22 +524,19 @@ html, body {
 
   .resultGrid {
     display: grid;
-    grid-template-columns: repeat(5, 54px); /* más compacto */
+    grid-template-columns: repeat(3, 1fr);
     gap: 6px;
     justify-content: center;
+    --weak-icon: 36px;
+    --weak-min: 78px;
+    --weak-pad-v: 12px;
+    --weak-pad-h: 6px;
+    --weak-gap: 4px;
   }
 
   .weakTile {
-    width: 54px;
-    min-height: 64px;
-    padding: 8px 4px;
+    width: auto;
     border-radius: 12px;
-    gap: 4px;
-  }
-
-  .weakTileIcon {
-    width: 26px;
-    height: 26px;
   }
 
   .weakTileLabel {
@@ -483,5 +545,3 @@ html, body {
     letter-spacing: 0.3px;
   }
 }
-
-

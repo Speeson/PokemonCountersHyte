@@ -3,8 +3,6 @@ import "./App.css";
 import { ALL_TYPES, computeDefensiveMultipliers, groupMultipliers } from "./lib/typeEffectiveness";
 import TypeGrid from "./components/TypeGrid";
 import ResultsPanel from "./components/ResultsPanel";
-import titleImage from "./assets/logo/pokemon-counters.png";
-
 
 export default function App() {
   const [selected, setSelected] = useState([]); // max 2
@@ -22,22 +20,14 @@ export default function App() {
 
   return (
     <div className="page">
-      <header className="header">
-        <img
-          src={titleImage}
-          alt="Pokémon Counters"
-          className="titleImage"/>
-      </header>
-
-
       <main className="layout">
-        <section className="panel">
+        <section className="panel panel--types">
           <h2 className="panelTitle">Choose your type(s)</h2>
 
           <TypeGrid types={ALL_TYPES} selected={selected} onToggle={toggleType} />
         </section>
 
-        <section className="panel">
+        <section className="panel panel--results">
           <ResultsPanel selected={selected} groups={groups} />
         </section>
       </main>
