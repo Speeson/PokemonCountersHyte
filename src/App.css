@@ -1,0 +1,487 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #ffffff;
+  overflow-x: hidden; /* evita el desplazamiento lateral */
+}
+
+
+:root {
+  --neon-default: 0, 255, 200; /* fallback */
+}
+
+/* =========================
+   LAYOUT GENERAL
+   ========================= */
+
+.page {
+  min-height: 100vh;
+  padding: 28px 16px;
+
+  /* Fondo tipo Pokéball */
+  background: linear-gradient(
+    to bottom,
+    #e53935 0%,
+    #e53935 50%,
+    #ffffff 50%,
+    #ffffff 100%
+  );
+}
+
+.header {
+  max-width: 1100px;
+  margin: 0 auto 20px auto;
+  text-align: center;
+}
+
+.subtitle {
+  margin-top: 14px;
+  font-size: 14px;
+  color: #fff;
+  opacity: 0.95;
+}
+
+/* =========================
+   LAYOUT PRINCIPAL
+   ========================= */
+
+.layout {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+
+/* =========================
+   PANELES
+   ========================= */
+
+.panel {
+  background: rgba(12, 12, 12, 0.733);
+  border: 1px solid rgba(0,0,0,0.12);
+  border-radius: 20px;
+  padding: 18px;
+  box-shadow: 0 18px 34px rgba(0,0,0,0.14);
+  backdrop-filter: blur(8px);
+}
+
+.panelTitle {
+  margin: 0 0 18px 0;
+  text-align: center;
+  font-size: 20px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #fefbfb;
+  opacity: 0.9;
+}
+
+.panelTitle::after {
+  content: "";
+  display: block;
+  width: 120px;
+  height: 3px;
+  margin: 10px auto 0 auto;
+  border-radius: 999px;
+  background: rgba(247, 245, 245, 0.696);
+}
+
+/* =========================
+   GRID DE TIPOS (3x6)
+   ========================= */
+
+.typeGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+
+/* =========================
+   BOTONES DE TIPO
+   ========================= */
+
+.typeTile {
+  position: relative;
+  border: 1px solid rgba(0,0,0,0.14);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.92);
+  cursor: pointer;
+
+  padding: 18px 12px;
+  display: grid;
+  place-items: center;
+  gap: 10px;
+
+  min-height: 120px;
+  user-select: none;
+
+  transition:
+    transform 140ms ease,
+    box-shadow 180ms ease,
+    border-color 180ms ease;
+}
+
+.typeTile:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 24px rgba(0,0,0,0.14);
+}
+
+.typeTile:active {
+  transform: scale(0.98);
+  box-shadow: 0 10px 18px rgba(0,0,0,0.16);
+}
+
+
+/* Estado seleccionado: sin ring externo (no se solapa) */
+.typeTile.active {
+  border-color: rgba(0,0,0,0.28);
+  transform: translateY(-2px) scale(1.03);
+  animation: pop 180ms ease-out, neonPulse 900ms ease-in-out 1;
+
+  /* Glow persistente MÁS fuerte */
+  box-shadow:
+    0 20px 34px rgba(0, 0, 0, 0.20),
+    inset 0 0 0 2px rgba(255, 255, 255, 0.65),
+    inset 0 0 34px rgba(var(--neon), 0.85),
+    inset 0 0 80px rgba(var(--neon), 0.35);
+
+  filter: saturate(1.45) contrast(1.12) brightness(1.08);
+  animation: pop 180ms ease-out, neonPulse 420ms ease-out 1;
+}
+
+.typeTile.active .typeTileIcon {
+  filter: drop-shadow(0 0 10px rgba(var(--neon), 0.85));
+}
+
+
+/* Elimina totalmente los pseudo-elementos antiguos */
+.typeTile.active::after,
+.typeTile.active::before {
+  content: none;
+}
+
+/* Icono y texto */
+.typeTileIcon {
+  width: 60px;
+  height: 60px;
+}
+
+.typeTileLabel {
+  font-size: 12px;
+  font-weight: 700;           /* 👈 NEGRITA */
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  opacity: 0.95;
+}
+
+
+/* Badge 1 / 2 */
+.pickBadge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+
+  display: grid;
+  place-items: center;
+
+  font-size: 14px;
+  font-weight: 800;
+  color: #111;
+
+  background: rgba(255,255,255,0.96);
+  border: 1px solid rgba(0,0,0,0.2);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.2);
+}
+
+/* =========================
+   DEBILIDADES
+   ========================= */
+
+.results {
+  display: grid;
+  gap: 18px;
+}
+
+.resultBlock {
+  display: grid;
+  gap: 12px;
+}
+
+.resultTitle {
+  margin: 0;
+  text-align: center;
+  font-size: 16px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #ffffff;
+  opacity: 0.85;
+}
+
+.resultGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+/* Botón de debilidad */
+.weakTile {
+  border: 1px solid rgba(0,0,0,0.14);
+  border-radius: 20px;
+  background: rgba(255,255,255,0.92);
+
+  padding: 16px 10px;
+  display: grid;
+  place-items: center;
+  gap: 10px;
+
+  min-height: 110px;
+}
+
+.weakTileIcon {
+  width: 60px;
+  height: 60px;
+}
+
+.weakTileLabel {
+  font-size: 12px;
+  font-weight: 700;           /* 👈 NEGRITA */
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  opacity: 0.95;
+}
+
+
+.emptyText {
+  text-align: center;
+  opacity: 0.75;
+}
+
+/* =========================
+   ANIMACIONES
+   ========================= */
+
+@keyframes pop {
+  from {
+    transform: translateY(0) scale(0.96);
+  }
+  to {
+    transform: translateY(-2px) scale(1.04);
+  }
+}
+
+@keyframes neonPulse {
+  0% {
+    box-shadow:
+      0 16px 26px rgba(0, 0, 0, 0.16),
+      inset 0 0 0 2px rgba(255, 255, 255, 0.60),
+      inset 0 0 18px rgba(var(--neon, var(--neon-default)), 0.45),
+      inset 0 0 50px rgba(var(--neon, var(--neon-default)), 0.18);
+  }
+
+  60% {
+    box-shadow:
+      0 24px 40px rgba(0, 0, 0, 0.24),
+      inset 0 0 0 2px rgba(255, 255, 255, 0.70),
+      inset 0 0 46px rgba(var(--neon, var(--neon-default)), 0.95),
+      inset 0 0 110px rgba(var(--neon, var(--neon-default)), 0.45);
+  }
+
+  100% {
+    /* IGUAL que el estado final de .typeTile.active */
+    box-shadow:
+      0 20px 34px rgba(0, 0, 0, 0.20),
+      inset 0 0 0 2px rgba(255, 255, 255, 0.65),
+      inset 0 0 34px rgba(var(--neon, var(--neon-default)), 0.85),
+      inset 0 0 80px rgba(var(--neon, var(--neon-default)), 0.35);
+  }
+}
+
+
+/* =========================
+   LOGO RESPONSIVE
+   ========================= */
+
+.titleImage {
+  display: block;
+  margin: 0 auto;
+
+  width: 100%;
+  max-width: 360px;   /* límite en escritorio */
+  min-width: 220px;   /* evita que se haga enano */
+
+  height: auto;
+
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.35));
+}
+/* =========================
+   SECCIONES DEL PANEL RESULTADOS
+   ========================= */
+
+.resultSection {
+  display: grid;
+  gap: 12px;
+  padding: 12px 0;
+}
+
+/* Separador entre secciones (no aparece encima de la primera) */
+.resultSection + .resultSection {
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.resultSectionTitle {
+  margin: 0;
+  text-align: center;
+  font-size: 18px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #ffffff;
+  opacity: 0.95;
+}
+
+.resultSectionBody {
+  display: grid;
+  gap: 18px;
+}
+
+/* =========================
+   MOBILE OVERRIDES
+   ========================= */
+@media (max-width: 520px) {
+  /* Fondo móvil: pokeball rojo/blanco */
+  .page {
+    min-height: 100vh;
+    padding: 16px 12px;
+    background: linear-gradient(
+      to bottom,
+      #e53935 0%,
+      #e53935 50%,
+      #ffffff 50%,
+      #ffffff 100%
+    );
+    overflow-x: hidden;
+  }
+
+  /* Header centrado y logo MUY pequeño */
+  .header {
+    max-width: 480px;
+    margin: 0 auto 12px auto;
+  }
+
+  .titleImage {
+    width: auto;
+    max-width: 130px; /* pequeño de verdad */
+    min-width: 0;
+    margin: 0 auto;
+    display: block;
+  }
+
+  /* Layout centrado de verdad */
+  .layout {
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
+    grid-template-columns: 1fr;
+    justify-items: center; /* centra los paneles */
+    gap: 14px;
+  }
+
+  /* Paneles centrados y (IMPORTANTE) más claros para que se vea el blanco */
+  .panel {
+    width: 100%;
+    margin: 0;
+    padding: 14px;
+    background: rgba(255, 255, 255, 0.86); /* 👈 así el fondo blanco vuelve a verse */
+    border: 1px solid rgba(0,0,0,0.10);
+  }
+
+  /* Si aclaras panel, el texto de títulos mejor oscuro */
+  .panelTitle,
+  .resultTitle,
+  .resultSectionTitle {
+    color: rgba(0,0,0,0.85);
+  }
+  .panelTitle::after {
+    background: rgba(0,0,0,0.18);
+  }
+
+  /* Grid de tipos: 5 por fila */
+  .typeGrid {
+    grid-template-columns: repeat(5, 1fr) !important;
+    gap: 8px;
+  }
+
+  .typeTile {
+    min-height: 70px;
+    padding: 10px 6px;
+    border-radius: 14px;
+    gap: 6px;
+  }
+
+  .typeTileIcon {
+    width: 30px;
+    height: 30px;
+  }
+
+  .typeTileLabel {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+  }
+
+  /* Quitar badge 1/2 en móvil */
+  .pickBadge {
+    display: none !important;
+  }
+
+  /* Resultados: más juntos y mejor aprovechados */
+  .resultSectionBody {
+    gap: 10px;
+  }
+
+  .resultBlock {
+    gap: 8px;
+  }
+
+  .resultGridWrap {
+    display: flex;
+    justify-content: center;
+  }
+
+  .resultGrid {
+    display: grid;
+    grid-template-columns: repeat(5, 54px); /* más compacto */
+    gap: 6px;
+    justify-content: center;
+  }
+
+  .weakTile {
+    width: 54px;
+    min-height: 64px;
+    padding: 8px 4px;
+    border-radius: 12px;
+    gap: 4px;
+  }
+
+  .weakTileIcon {
+    width: 26px;
+    height: 26px;
+  }
+
+  .weakTileLabel {
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+  }
+}
+
+
