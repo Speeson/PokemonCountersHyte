@@ -3,5 +3,5 @@ import react from "@vitejs/plugin-react";
 
 export default defineConfig({
   plugins: [react()],
-  base: "/pokemonCountersHyte/", // <- EXACTO el nombre del repo
+  base: "/PokemonCountersHyte/", // <- EXACTO el nombre del repo
 });
