@@ -22,8 +22,6 @@ export default function App() {
     <div className="page">
       <main className="layout">
         <section className="panel panel--types">
-          <h2 className="panelTitle">Choose your type(s)</h2>
-
           <TypeGrid types={ALL_TYPES} selected={selected} onToggle={toggleType} />
         </section>
 
