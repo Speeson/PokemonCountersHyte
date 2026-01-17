@@ -121,7 +121,7 @@ Archivo de configuracion:
 ## Instalacion local
 
 ```bash
-git clone https://github.com/Speeson/PokemonCounters.git
+git clone https://github.com/Speeson/PokemonCountersHyte.git
 cd PokemonCounters
 npm install
 npm run dev
