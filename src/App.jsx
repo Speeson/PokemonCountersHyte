@@ -3,6 +3,7 @@ import "./App.css";
 import { ALL_TYPES, computeDefensiveMultipliers, groupMultipliers } from "./lib/typeEffectiveness";
 import TypeGrid from "./components/TypeGrid";
 import ResultsPanel from "./components/ResultsPanel";
+import pokHyteLogo from "./assets/logo/pokHyte.png";
 
 export default function App() {
   const [selected, setSelected] = useState([]); // max 2
@@ -20,6 +21,9 @@ export default function App() {
 
   return (
     <div className="page">
+      <header className="header">
+        <img className="titleImage" src={pokHyteLogo} alt="PokHyte" />
+      </header>
       <main className="layout">
         <section className="panel panel--types">
           <TypeGrid types={ALL_TYPES} selected={selected} onToggle={toggleType} />

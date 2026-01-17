@@ -23,6 +23,7 @@ html, body {
   min-height: 100vh;
   padding: 28px 16px;
   display: flex;
+  flex-direction: column;
 
   /* Fondo tipo Pokéball */
   background: linear-gradient(
@@ -36,7 +37,7 @@ html, body {
 
 .header {
   max-width: 1100px;
-  margin: 0 auto 20px auto;
+  margin: 0 auto 8px auto;
   text-align: center;
 }
 
@@ -60,7 +61,7 @@ html, body {
   align-items: stretch;
   width: 100%;
   flex: 1;
-  min-height: calc(100vh - 56px);
+  min-height: 0;
 }
 
 
@@ -370,8 +371,8 @@ html, body {
   margin: 0 auto;
 
   width: 100%;
-  max-width: 360px;   /* límite en escritorio */
-  min-width: 220px;   /* evita que se haga enano */
+  max-width: 720px;   /* límite en escritorio */
+  min-width: 440px;   /* evita que se haga enano */
 
   height: auto;
 
@@ -447,7 +448,7 @@ html, body {
     grid-template-columns: 1fr;
     justify-items: center; /* centra los paneles */
     gap: 14px;
-    min-height: calc(100vh - 32px);
+    min-height: 0;
     grid-template-rows: 1fr 1fr;
     align-content: stretch;
   }
